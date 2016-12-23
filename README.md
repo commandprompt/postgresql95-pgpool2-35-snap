@@ -28,5 +28,5 @@ To install from Ubuntu Store simply run:
 
 ## Configuration
 
-Refer to official documentation that explain how to configure Pgpool-II.
+Refer to official documentation that explains how to configure Pgpool-II.
 
