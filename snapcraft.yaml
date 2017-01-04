@@ -79,7 +79,7 @@ parts:
         - libmemcached-dev
         - libpgpool-dev
         - postgresql-server-dev-9.5
-        - libpam0g-dev:amd64
+        - libpam0g-dev
     #stage-packages:
     #    - libpgpool0
     install: |
