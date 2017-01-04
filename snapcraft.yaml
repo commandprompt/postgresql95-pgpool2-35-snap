@@ -81,19 +81,23 @@ parts:
         - postgresql-server-dev-9.5
     #stage-packages:
     #    - libpgpool0
-  pgpool-adm:
-    plugin: make
+  pgpool-extensions:
+    plugin: nil
     source: parts/pgpool/build/src/
-    source-subdir: sql/pgpool_adm/
-    after: 
-      - pgpool
-  pgpool-recovery:
-    plugin: make
-    source: parts/pgpool/build/src/sql/pgpool-recovery/
-    after: 
-      - pgpool
-  pgpool-regclass:
-    plugin: make
-    source: parts/pgpool/build/src/sql/pgpool-regclass/
-    after: 
-      - pgpool
+    #source-subdir: sql/pgpool_adm/
+    install: |
+        base=$(pwd)
+      
+        echo $base
+
+        # Build pgpool-adm
+        cd $base/sql/pgpool_adm
+        make && make install DESTDIR=$SNAPCRAFT_PART_INSTALL
+
+        # Build pgpool-recovery
+        cd $base/sql/pgpool-recovery
+        make && make install DESTDIR=$SNAPCRAFT_PART_INSTALL
+
+        # Build pgpool-regclass
+        cd $base/sql/pgpool-regclass
+        make && make install DESTDIR=$SNAPCRAFT_PART_INSTALL
